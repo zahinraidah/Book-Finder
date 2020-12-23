@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import BookList from "./components/BookList";
 import { getBooksByTerm } from "./api/GoogleBooks";
@@ -21,14 +20,13 @@ const App = () => {
   };
 
   const nextPage = async (page_number) => {
-    let currentPage = 20 * (page_number -1);
+    let currentPage = 20 * (page_number - 1);
     setCurrentPage(page_number);
     await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages);
   };
 
   return (
     <div>
-      <Navbar />
       <Searchbar handleChange={handleChange} handleSubmit={handleSubmit} />
       <BookList books={books} />
       {totalPages > 1 ? (
@@ -38,8 +36,8 @@ const App = () => {
           totalPages={totalPages}
         />
       ) : (
-        ""
-      )}
+          ""
+        )}
     </div>
   );
 };

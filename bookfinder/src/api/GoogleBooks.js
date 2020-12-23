@@ -14,8 +14,16 @@ const getBooksByTerm = (SearchTerm, setBooks, page_number, setTotalPages) => {
   }).then((response) => {
     console.log(response.data);
     setBooks(response.data.items);
-    setTotalPages(Math.ceil(response.data.totalItems/24));
+    setTotalPages(Math.ceil(response.data.totalItems / 24));
   });
 };
 
-export { getBooksByTerm };
+const getBookDetails = (bookID, setCurrentBook) => {
+  BookDB.get("/volumes/" + bookID, {
+  }).then((response) => {
+    console.log(response.data.volumeInfo);
+    setCurrentBook(response.data.volumeInfo);
+  });
+};
+
+export { getBooksByTerm, getBookDetails };
