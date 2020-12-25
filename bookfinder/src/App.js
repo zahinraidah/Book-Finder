@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from "react";
 import Searchbar from "./components/Searchbar";
 import BookList from "./components/BookList";
@@ -20,9 +21,9 @@ const App = () => {
   };
 
   const nextPage = async (page_number) => {
-    let currentPage = 20 * (page_number - 1);
+    let startIndex = 20 * (page_number - 1);
     setCurrentPage(page_number);
-    await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages);
+    await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
   };
 
   return (
