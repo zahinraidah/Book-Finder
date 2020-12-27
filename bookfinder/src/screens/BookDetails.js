@@ -16,11 +16,11 @@ const BookDetails = (props) => {
     const header = "Details of " + currentBook.title;
 
     return (
-        <div class="ui items" style={{ marginLeft: "5%", marginRight: "5%" }}>
-            <Navbar link={"/book/" + props.location.data.id}
+        <div class="ui items">
+            <Navbar link={"/book/" + props.match.params.id}
                 header={header}
             />
-            <div class="item">
+            <div class="item" style={{ marginLeft: "5%", marginRight: "5%" }}>
                 <div class="image">
                     {ImageURL !== "" ? (
                         <img

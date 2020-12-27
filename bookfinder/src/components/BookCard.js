@@ -39,6 +39,7 @@ const BookCard = (props) => {
           <Link to={{
             pathname: "/book/" + props.data.id,
             data: props.data,
+            history: props.history
           }}
           >
             See Details

@@ -40,8 +40,6 @@ const BookHome = (props) => {
         let startIndex = 20 * (page_number - 1);
         setCurrentPage(page_number);
         props.history.push("/", { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy });
-        console.log("history")
-        // console.log(props.history)
         await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
     };
 
@@ -53,8 +51,9 @@ const BookHome = (props) => {
             />
             <Searchbar handleChange={handleChange} handleSubmit={handleSubmit} />
             <DropdownButton handleDropdown={handleDropdown}
-                orderBy={orderBy} />
-            <BookList books={books} />
+                order={orderBy} />
+            <BookList books={books}
+                history={props.history} />
             {totalPages > 1 ? (
                 <Pagination
                     nextPage={nextPage}

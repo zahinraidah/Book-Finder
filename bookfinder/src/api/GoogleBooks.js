@@ -16,13 +16,11 @@ const getBooksByTerm = (SearchTerm, setBooks, page_number, setTotalPages, orderB
     let maxData = 0;
     if (response.data.totalItems > maxData) { maxData = response.data.totalItems }
     setBooks(response.data.items);
-    console.log("response.data.totalItems: " + response.data.totalItems);
     setTotalPages(Math.ceil(maxData / 18));
   });
 };
 
 const getBookDetails = (bookID, setCurrentBook, setImageURL) => {
-  console.log(bookID);
   BookDB.get("/volumes/" + bookID, {}).then((response) => {
     setCurrentBook(response.data.volumeInfo);
     setImageURL(response.data.volumeInfo.imageLinks.thumbnail);
