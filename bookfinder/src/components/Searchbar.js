@@ -5,7 +5,7 @@ const Searchbar = (props) => {
   // const history = useHistory();
   return (
     <form onSubmit={props.handleSubmit}>
-      <div class="ui search" style={{ marginLeft: "45%", marginTop: "1%", width: "25%", height: "50%" }}>
+      <div class="ui category search" style={{ marginLeft: "45%", marginTop: "1%", width: "20%" }}>
         <div class="ui icon input">
           <input class="prompt"
             type="text"

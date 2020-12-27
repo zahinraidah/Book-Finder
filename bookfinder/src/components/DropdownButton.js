@@ -4,17 +4,22 @@ import 'react-dropdown/style.css';
 
 const DropdownButton = (props) => {
   return (
-    <form onChange={props.handleDropdown}>
-      <div class="ui simple selection dropdown"
-        style={{ marginLeft: "45%", marginTop: "1%", width: "15%", height: "50%" }}>
-        <input type="hidden" name="gender" />
-        <i class="dropdown icon"></i>
-        <div class="default text">Sort</div>
-        <div class="menu">
-          <div class="item" data-value="relevance">Relevance</div>
-          <div class="item" data-value="newest">Newest</div>
-        </div>
-      </div>
+    <form onChange={props.handleSubmit}>
+      <select
+        className="ui simple dropdown"
+        style={{ marginLeft: "48%", marginTop: "1%", marginBottom: "5%", width: "120px", height: "50%" }}
+        placeholder={<i class=" dropdown icon">Sort</i>}
+        //onChange={
+        //         function () => {
+        //   { props.handleDropdown };
+        //   {props.handleSubmit}
+        // }}
+        onChange={props.handleDropdown}
+        value={props.defaultorder}
+      >
+        <option value="relevance">Relevance</option>
+        <option value="newest">Newest</option>
+      </select >
     </form>
   );
 };

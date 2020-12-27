@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { getBookDetails } from "./api/GoogleBooks";
+import { getBookDetails } from "../api/GoogleBooks";
 import { useHistory } from "react-router-dom";
 
 const BookDetails = (props) => {
@@ -14,7 +14,7 @@ const BookDetails = (props) => {
     }, []);
 
     return (
-        <div class="ui items">
+        <div class="ui items" style={{ marginLeft: "5%", marginRight: "5%" }}>
             <div class="item">
                 <div class="image">
                     {ImageURL !== "" ? (
@@ -34,18 +34,23 @@ const BookDetails = (props) => {
                 <div class="content">
                     <a class="header">{currentBook.title}</a>
                     <div class="meta">
-                        <span>{currentBook.authors}</span>
+                        <span>Author(s): <br /> {currentBook.authors}</span>
                     </div>
                     <div class="description">
-                        <p>{currentBook.description}</p>
+                        {currentBook.description}
                     </div>
                     <div class="extra">
-                        {currentBook.publishedDate}
+                        <b>Publisher: {currentBook.publisher}</b><br />
+                        <b>Published at: {currentBook.publishedDate}</b><br />
+                        <b>Pages: {currentBook.pageCount}</b><br />
+                        <b>Average Rating: {currentBook.averageRating}</b><br />
                     </div>
                     <div class="left floated author">
-                        <button class="ui secondary button" onClick={() => searchData.goBack()}>
+                        <button class="ui secondary button"
+                            style={{ marginTop: "3%" }}
+                            onClick={() => searchData.goBack()}>
                             Go to search page!
-              </button>
+                        </button>
                     </div>
                 </div>
             </div>

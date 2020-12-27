@@ -2,20 +2,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import BookDetails from "./BookDetails";
-import Navbar from "./components/Navbar";
-import { BrowserRouter, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Navbar header="Welcome to Book Finder"
-        link="/" />
-      <div>
-        <Route path="/" exact component={App} />
-        <Route path="/book/:id" exact component={BookDetails} />
-      </div>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
