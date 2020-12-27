@@ -62,11 +62,13 @@ const Pagination = (props) => {
     );
   }
   return (
-    <div
+    <div className="ui container"
+    >      <div
       className="ui pagination menu"
-      style={{ marginLeft: "20%", marginBottom: "10%", marginTop: "5%" }}
+      style={{ marginBottom: "10%", marginTop: "5%" }}
     >
-      {page_links}
+        {page_links}
+      </div>
     </div>
   );
 };

@@ -13,8 +13,11 @@ const getBooksByTerm = (SearchTerm, setBooks, page_number, setTotalPages, orderB
       orderBy: orderBy
     },
   }).then((response) => {
+    let maxData = 0;
+    if (response.data.totalItems > maxData) { maxData = response.data.totalItems }
     setBooks(response.data.items);
-    setTotalPages(Math.ceil(response.data.totalItems));
+    console.log("response.data.totalItems: " + response.data.totalItems);
+    setTotalPages(Math.ceil(maxData / 18));
   });
 };
 
