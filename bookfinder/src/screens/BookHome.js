@@ -11,9 +11,9 @@ import DropdownButton from "../components/DropdownButton";
 import Navbar from "../components/Navbar";
 
 const BookHome = (props) => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState(props.history.location.state == undefined ? "" : props.history.location.state.searchTerm);
     const [books, setBooks] = useState([]);
-    const [currentPage, setCurrentPage] = useState(props.history.location.state == undefined ? 1 : props.history.location.state.page);
+    const [currentPage, setCurrentPage] = useState(props.history.location.state == undefined ? 1 : props.history.location.state.page_number);
     const [totalPages, setTotalPages] = useState(0);
     const [orderBy, setOrderBy] = useState(props.history.location.state == undefined ? "relevance" : props.history.location.state.orderBy);
 
@@ -31,14 +31,17 @@ const BookHome = (props) => {
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };
-    const handleDropdown = (event) => {
+    const handleDropdown = async (event) => {
         setOrderBy(event.target.value);
         console.log(orderBy);
+        await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages, orderBy);
     };
     const nextPage = async (page_number) => {
         let startIndex = 20 * (page_number - 1);
         setCurrentPage(page_number);
-        props.history.push({ page_number: page_number, orderBy: orderBy });
+        props.history.push("/", { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy });
+        console.log("history")
+        // console.log(props.history)
         await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
     };
 
@@ -49,7 +52,8 @@ const BookHome = (props) => {
                 description="Type the book title in search bar and press enter"
             />
             <Searchbar handleChange={handleChange} handleSubmit={handleSubmit} />
-            <DropdownButton handleDropdown={handleDropdown} />
+            <DropdownButton handleDropdown={handleDropdown}
+                orderBy={orderBy} />
             <BookList books={books} />
             {totalPages > 1 ? (
                 <Pagination

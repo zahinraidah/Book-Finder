@@ -8,9 +8,10 @@ import Navbar from "../components/Navbar"
 const BookDetails = (props) => {
     const [currentBook, setCurrentBook] = useState({});
     const [ImageURL, setImageURL] = useState("");
+    console.log(props.history);
 
     useEffect(() => {
-        getBookDetails(props.location.data.id, setCurrentBook, setImageURL);
+        getBookDetails(props.match.params.id, setCurrentBook, setImageURL);
     }, []);
     const header = "Details of " + currentBook.title;
 
