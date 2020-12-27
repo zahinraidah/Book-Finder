@@ -1,32 +1,42 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 /* eslint-disable eqeqeq */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const BookCard = (props) => {
-  const ImageURL = props.data.volumeInfo.imageLinks.thumbnail;
-  const BookTitle = props.data.volumeInfo.title;
-  const BookAuthor = props.data.volumeInfo.authors;
-  return (
-    <div class="col s12 m4">
-      <div class="card">
-        <div class="card-image">
-          {ImageURL == undefined ? (
-            <img
-              src="https://picsum.photos/200/300"
-              alt=""
-              style={{ width: "100", height: "200" }}
-            />
-          ) : (
-              <img
-                src={ImageURL}
-                alt=""
-                style={{ width: "100", height: "200" }}
-              />
-            )}
+  const bookData = props.data.volumeInfo
+  const ImageURL = bookData.imageLinks.thumbnail;
+  const BookTitle = bookData.title;
+  const BookAuthor = bookData.authors;
 
-          <span class="card-title">{BookTitle}</span>
+  return (
+    <div class="ui raised card" style={{ marginLeft: "10%" }}>
+      <div class="image">
+        {ImageURL == null ? (
+          <img
+            src="https://picsum.photos/200/300"
+            alt=""
+            style={{ width: "50", height: "100" }}
+          />
+        ) : (
+            <img
+              src={ImageURL}
+              alt=""
+              style={{ width: "50", height: "100" }}
+            />
+          )}
+      </div>
+      <div class="content">
+        <div class="header">Title: {BookTitle}</div>
+        <div class="meta">
+          <span class="category"><b>Author(s): {BookAuthor}</b></span>
         </div>
-        <div class="card-content">{BookAuthor}</div>
-        <div class="card-action">
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="left floated author">
           <Link to={{
             pathname: "/book/" + props.data.id,
             data: props.data,

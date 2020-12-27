@@ -9,7 +9,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar title="Welcome to Book Finder" />
+      <Navbar header="Welcome to Book Finder"
+        link="/" />
       <div>
         <Route path="/" exact component={App} />
         <Route path="/book/:id" exact component={BookDetails} />
