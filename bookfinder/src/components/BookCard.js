@@ -5,24 +5,23 @@ import { Link } from "react-router-dom";
 /* eslint-disable jsx-a11y/anchor-is-valid */
 const BookCard = (props) => {
   const bookData = props.data.volumeInfo
-  const ImageURL = bookData.imageLinks.thumbnail;
   const BookTitle = bookData.title;
   const BookAuthor = bookData.authors;
 
   return (
     <div class="ui raised card" style={{ marginLeft: "10%" }}>
       <div class="image">
-        {ImageURL == null ? (
+        {bookData.imageLinks == undefined ? (
           <img
             src="https://picsum.photos/200/300"
             alt=""
-            style={{ width: "50", height: "100" }}
+            style={{ width: "100", height: "100" }}
           />
         ) : (
             <img
-              src={ImageURL}
+              src={bookData.imageLinks.thumbnail}
               alt=""
-              style={{ width: "50", height: "100" }}
+              style={{ width: "100", height: "100" }}
             />
           )}
       </div>

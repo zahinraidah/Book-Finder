@@ -3,18 +3,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { getBookDetails } from "../api/GoogleBooks";
-import { useHistory } from "react-router-dom";
+import Navbar from "../components/Navbar"
 
 const BookDetails = (props) => {
     const [currentBook, setCurrentBook] = useState({});
     const [ImageURL, setImageURL] = useState("");
-    const searchData = useHistory();
+
     useEffect(() => {
         getBookDetails(props.location.data.id, setCurrentBook, setImageURL);
     }, []);
+    const header = "Details of " + currentBook.title;
 
     return (
         <div class="ui items" style={{ marginLeft: "5%", marginRight: "5%" }}>
+            <Navbar link={"/book/" + props.location.data.id}
+                header={header}
+            />
             <div class="item">
                 <div class="image">
                     {ImageURL !== "" ? (
@@ -37,7 +41,7 @@ const BookDetails = (props) => {
                         <span>Author(s): <br /> {currentBook.authors}</span>
                     </div>
                     <div class="description">
-                        {currentBook.description}
+                        <p>{currentBook.description}</p>
                     </div>
                     <div class="extra">
                         <b>Publisher: {currentBook.publisher}</b><br />
@@ -48,7 +52,7 @@ const BookDetails = (props) => {
                     <div class="left floated author">
                         <button class="ui secondary button"
                             style={{ marginTop: "3%" }}
-                            onClick={() => searchData.goBack()}>
+                            onClick={() => props.history.goBack()}>
                             Go to search page!
                         </button>
                     </div>

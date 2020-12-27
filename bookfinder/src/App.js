@@ -7,13 +7,9 @@ import BookDetails from "./screens/BookDetails";
 import BookHome from "./screens/BookHome";
 
 const App = () => {
-  const searchData = useHistory();
+  const history = useHistory();
   return (
-    <BrowserRouter searchData={searchData}>
-      <Navbar header="Welcome to Book Finder"
-        link="/"
-        description="Type the book title in search bar and press enter"
-      />
+    <BrowserRouter history={history}>
       <div>
         <Route path="/" exact component={BookHome} />
         <Route path="/book/:id" exact component={BookDetails} />
