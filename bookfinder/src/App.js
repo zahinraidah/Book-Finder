@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { BrowserRouter, Route, useHistory } from "react-router-dom";
-import createHistory from "history/createBrowserHistory";
 import BookDetails from "./screens/BookDetails";
 import BookHome from "./screens/BookHome";
 

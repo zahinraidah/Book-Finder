@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
 /* eslint-disable eqeqeq */
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { Link } from "react-router-dom";
 const BookCard = (props) => {
   const bookData = props.data.volumeInfo
   const BookTitle = bookData.title;
@@ -13,6 +13,7 @@ const BookCard = (props) => {
       <div class="image">
         {bookData.imageLinks == undefined ? (
           <img
+            class="ui small image"
             src="https://picsum.photos/200/300"
             alt=""
             style={{ width: "100", height: "100" }}
@@ -39,7 +40,6 @@ const BookCard = (props) => {
           <Link to={{
             pathname: "/book/" + props.data.id,
             data: props.data,
-            history: props.history
           }}
           >
             See Details

@@ -9,6 +9,7 @@ import { getBooksByTerm } from "../api/GoogleBooks";
 import Pagination from "../components/Pagination";
 import DropdownButton from "../components/DropdownButton";
 import Navbar from "../components/Navbar";
+import { withRouter } from "react-router-dom";
 
 const BookHome = (props) => {
     const [searchTerm, setSearchTerm] = useState(props.history.location.state == undefined ? "" : props.history.location.state.searchTerm);
@@ -38,8 +39,9 @@ const BookHome = (props) => {
     };
     const nextPage = async (page_number) => {
         let startIndex = 20 * (page_number - 1);
-        setCurrentPage(page_number);
-        props.history.push("/", { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy });
+        setCurrentPage(page_number)
+        props.history.push('/', { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy })
+        console.log("inside bookhome: " + JSON.stringify(props.history));
         await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
     };
 
@@ -53,7 +55,8 @@ const BookHome = (props) => {
             <DropdownButton handleDropdown={handleDropdown}
                 order={orderBy} />
             <BookList books={books}
-                history={props.history} />
+                history={props.history}
+            />
             {totalPages > 1 ? (
                 <Pagination
                     nextPage={nextPage}
@@ -67,4 +70,4 @@ const BookHome = (props) => {
     );
 };
 
-export default BookHome;
+export default withRouter(BookHome);

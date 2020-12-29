@@ -11,8 +11,8 @@ const DropdownButton = (props) => {
         onChange={props.handleDropdown}
         value={props.order}
       >
-        <option value="relevance">Relevance</option>
-        <option value="newest">Newest</option>
+        <option value="relevance" onSelect={(order) => { order = "relevance" }}>Relevance</option>
+        <option value="newest" onSelect={(order) => { order = "newest" }}>Newest</option>
 
       </select >
     </form >

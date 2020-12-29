@@ -4,62 +4,64 @@
 import React, { useState, useEffect } from "react";
 import { getBookDetails } from "../api/GoogleBooks";
 import Navbar from "../components/Navbar"
+import { withRouter } from "react-router-dom";
 
 const BookDetails = (props) => {
     const [currentBook, setCurrentBook] = useState({});
     const [ImageURL, setImageURL] = useState("");
-    console.log(props.history);
+    console.log("inside Bookdetails: " + JSON.stringify(props.history))
 
     useEffect(() => {
         getBookDetails(props.match.params.id, setCurrentBook, setImageURL);
     }, []);
-    const header = "Details of " + currentBook.title;
 
     return (
-        <div class="ui items">
+        <div>
             <Navbar link={"/book/" + props.match.params.id}
-                header={header}
+                header={"Details of " + currentBook.title}
             />
-            <div class="item" style={{ marginLeft: "5%", marginRight: "5%" }}>
-                <div class="image">
-                    {ImageURL !== "" ? (
-                        <img
-                            src={ImageURL}
-                            alt=""
-                            style={{ width: "100", height: "200" }}
-                        />
-                    ) : (
+            <div class="ui items" style={{ marginLeft: "5%", marginRight: "5%" }}>
+                <div class="item">
+                    <div class="image">
+                        {ImageURL !== "" ? (
                             <img
-                                src="https://picsum.photos/300/600"
+                                src={ImageURL}
                                 alt=""
                                 style={{ width: "100", height: "200" }}
                             />
-                        )}
-                </div>
-                <div class="content">
-                    <a class="header">{currentBook.title}</a>
-                    <div class="meta">
-                        <span>Author(s): <br /> {currentBook.authors}</span>
+                        ) : (
+                                <img
+                                    src="https://picsum.photos/300/600"
+                                    alt=""
+                                    style={{ width: "100", height: "200" }}
+                                />
+                            )}
                     </div>
-                    <div class="description">
-                        <p>{currentBook.description}</p>
-                    </div>
-                    <div class="extra">
-                        <b>Publisher: {currentBook.publisher}</b><br />
-                        <b>Published at: {currentBook.publishedDate}</b><br />
-                        <b>Pages: {currentBook.pageCount}</b><br />
-                        <b>Average Rating: {currentBook.averageRating}</b><br />
-                    </div>
-                    <div class="left floated author">
-                        <button class="ui secondary button"
-                            style={{ marginTop: "3%" }}
-                            onClick={() => props.history.goBack()}>
-                            Go to search page!
-                        </button>
+                    <div class="content">
+                        <a class="header">{currentBook.title}</a>
+                        <div class="meta">
+                            <span>Author(s): <br /> {currentBook.authors}</span>
+                        </div>
+                        <div class="description">
+                            <p>{currentBook.description}</p>
+                        </div>
+                        <div class="extra">
+                            <b>Publisher: {currentBook.publisher}</b><br />
+                            <b>Published at: {currentBook.publishedDate}</b><br />
+                            <b>Pages: {currentBook.pageCount}</b><br />
+                            <b>Average Rating: {currentBook.averageRating}</b><br />
+                        </div>
+                        <div class="left floated author">
+                            <button class="ui secondary button"
+                                style={{ marginTop: "3%" }}
+                                onClick={() => props.history.goBack()}>
+                                Go to search page!
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
-export default BookDetails;
+export default withRouter(BookDetails);
