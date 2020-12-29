@@ -20,6 +20,7 @@ const BookHome = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        props.history.push('/', { searchTerm: searchTerm, page_number: 1, orderBy: orderBy })
         await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages, orderBy);
     };
 
