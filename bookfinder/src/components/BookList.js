@@ -2,7 +2,6 @@ import React from "react";
 import BookCard from "./BookCard";
 
 const BookList = (props) => {
-  console.log("inside BookList: " + JSON.stringify(props.history))
   return (
     <div className="ui grid">
       <div className="three column row">

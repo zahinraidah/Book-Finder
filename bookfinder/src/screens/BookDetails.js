@@ -9,7 +9,6 @@ import { withRouter } from "react-router-dom";
 const BookDetails = (props) => {
     const [currentBook, setCurrentBook] = useState({});
     const [ImageURL, setImageURL] = useState("");
-    console.log("inside Bookdetails: " + JSON.stringify(props.history))
 
     useEffect(() => {
         getBookDetails(props.match.params.id, setCurrentBook, setImageURL);

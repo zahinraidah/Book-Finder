@@ -17,13 +17,11 @@ const BookHome = (props) => {
     const [currentPage, setCurrentPage] = useState(props.history.location.state == undefined ? 1 : props.history.location.state.page_number);
     const [totalPages, setTotalPages] = useState(0);
     const [orderBy, setOrderBy] = useState(props.history.location.state == undefined ? "relevance" : props.history.location.state.orderBy);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
         props.history.push('/', { searchTerm: searchTerm, page_number: 1, orderBy: orderBy })
         await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages, orderBy);
     };
-
     useEffect(async () => {
         if (searchTerm != null) {
             await nextPage(currentPage);
@@ -33,19 +31,18 @@ const BookHome = (props) => {
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };
+
     const handleDropdown = async (event) => {
         setOrderBy(event.target.value);
-        console.log(orderBy);
+        console.log(orderBy)
         await getBooksByTerm(searchTerm, setBooks, currentPage, setTotalPages, orderBy);
     };
     const nextPage = async (page_number) => {
         let startIndex = 20 * (page_number - 1);
         setCurrentPage(page_number)
         props.history.push('/', { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy })
-        console.log("inside bookhome: " + JSON.stringify(props.history));
         await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
     };
-
     return (
         <div>
             <Navbar header="Welcome to Book Finder"
