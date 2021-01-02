@@ -41,7 +41,7 @@ const BookHome = (props) => {
         let startIndex = 20 * (page_number - 1);
         setCurrentPage(page_number)
         props.history.push('/', { searchTerm: searchTerm, page_number: page_number, orderBy: orderBy })
-        await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages);
+        await getBooksByTerm(searchTerm, setBooks, startIndex, setTotalPages, orderBy);
     };
     return (
         <div>
